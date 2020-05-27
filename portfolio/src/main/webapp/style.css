@@ -43,3 +43,9 @@ p.desc{
   margin-right: auto;
   width: 50%;
 }
+
+#owen {
+  border-radius: 10px;
+  border: 2px dotted orange;
+  padding: 5px;
+}
