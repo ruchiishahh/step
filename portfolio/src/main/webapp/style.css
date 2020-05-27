@@ -10,30 +10,29 @@
 
 
 body{
-    margin: auto;
     background-color: lightblue;
+    margin: auto;
 }
 
 h1{
-    text-align: center;
     border-style: solid;
     border-width: medium;
     border-color: red;
+    text-align: center;
 }
 
 p.portfolio_text{
-    text-align: center;
+    background-color: lightgrey;
     border: medium dotted red;
     border-radius: 5px;
-    background-color: lightgrey;
-  
+    text-align: center;
 }
 
 p.desc{
-    text-align: center;
     border-style: double;
     border-width: thin;
     border-color: green;
+    text-align: center;
 }
 
 
