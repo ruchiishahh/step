@@ -14,14 +14,26 @@ body{
     margin: auto;
 }
 
+
 h1{
     border-style: solid;
     border-width: medium;
     border-color: red;
+    font-family: Verdana, Geneva, Tahoma, sans-serif, cursive;
+    font-weight:normal;
+    font-size:24px;
+    padding-top: 60px;
     text-align: center;
 }
 
 p.portfolio_text{
+    background-color: lightgrey;
+    border: medium dotted red;
+    border-radius: 5px;
+    text-align: center;
+}
+
+p.randomMsg_text{
     background-color: lightgrey;
     border: medium dotted red;
     border-radius: 5px;
