@@ -10,18 +10,58 @@
 
 
 body{
-    margin: auto;
+    align-items: center;
+    background-color: #fac564;
     background-color: lightblue;
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/5908/food.png);
+    display: flex;
+    font-family: "Montserrat", sans-serif;
+    flex-direction: column;
+    font-smoothing: antialiased;
+    justify-content: center;
+    margin: auto;
+    
 }
 
 h1{
-    text-align: center;
     border-style: solid;
     border-width: medium;
     border-color: red;
+    text-align: center;
 }
 
+.social-media-container {
+  text-align: center;
+}
+
+.social-media-button:hover {
+  background:linear-gradient(to bottom, #415989 5%, #2e466e 100%);
+  background-color:#415989;
+}
+.social-media-button:active {
+  position:relative;
+  top:1px;
+}
+
+p.desc{
+    border-style: double;
+    border-width: thin;
+    border-color: green;
+    text-align: center;
+}
+
+p.social-media-text{
+
+  font-family: Georgia, Helvetica, sans-serif;
+  text-align: center;
+  border: dashed white;
+  border-radius: 5px;
+  background-color: lightgrey;
+}
+        
+
 p.portfolio_text{
+    font: Andale Mono, monospace;
     text-align: center;
     border: medium dotted red;
     border-radius: 5px;
@@ -29,11 +69,11 @@ p.portfolio_text{
   
 }
 
-p.desc{
+p.randomMsg_text{
+    background-color: lightgrey;
+    border: medium dotted red;
+    border-radius: 5px;
     text-align: center;
-    border-style: double;
-    border-width: thin;
-    border-color: green;
 }
 
 
