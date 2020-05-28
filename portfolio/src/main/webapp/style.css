@@ -30,9 +30,6 @@ h1{
     text-align: center;
 }
 
-.social-media-container {
-  text-align: center;
-}
 
 .social-media-button:hover {
   background:linear-gradient(to bottom, #415989 5%, #2e466e 100%);
