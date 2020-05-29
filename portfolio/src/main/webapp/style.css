@@ -37,7 +37,6 @@ p.desc{
     text-align: center;
 }
 
-
 h1{
     border-style: solid;
     border-width: medium;
@@ -53,8 +52,8 @@ div.master-title{
   width: 100%;
   margin: 0 auto;
   text-align: center;
-
 }
+
 .letter{
   display: inline-block;
   font-weight: 500;
