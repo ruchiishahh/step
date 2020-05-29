@@ -22,25 +22,24 @@ body{
     background-color: lightblue;
     background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/5908/food.png);
     display: flex;
-    font-family: "Montserrat", sans-serif;
     flex-direction: column;
+    font-family: "Montserrat", sans-serif;
     font-smoothing: antialiased;
     justify-content: center;
     margin: auto;
     
 }
 
-p.desc{
-    border-style: double;
-    border-width: thin;
-    border-color: green;
-    text-align: center;
+div.master-title{
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
 }
 
 h1{
+    border-color: red;
     border-style: solid;
     border-width: medium;
-    border-color: red;
     text-align: center;
 }
 
@@ -48,51 +47,46 @@ h1{
   box-sizing:border-box;
 }
 
-div.master-title{
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-}
 
 .letter{
-  display: inline-block;
-  font-weight: 500;
-  font-size: 2em;
-  margin: 0.2em;
-  position: relative;
   color: #00B4F1;
-  transform-style: flat | preserve-3d;
+  display: inline-block;
+  font-size: 2em;
+  font-weight: 500;
+  margin: 0.2em;
   perspective: 400;
+  position: relative;
+  transform-style: flat | preserve-3d;
   z-index: 1;
 }
 
 .letter:before, .letter:after{
-  position:absolute;
   content: attr(data-letter);
-  transform-origin: top left;
-  top:0;
   left:0;
+  position:absolute;
+  top:0;
+  transform-origin: top left;
 }
 .letter, .letter:before, .letter:after{
   transition: all 0.3s ease-in-out;
 }
 .letter:before{
   color: #fff;
-  z-index: 3;
   transform:
     rotateX(0deg)
     rotateY(-15deg)
     rotateZ(0deg);
+  z-index: 3;
 }
 .letter:after{
   color: rgba(4,2,0,.11);
-  z-index:2;
   transform:
     scale(1.08,1)
     rotateX(0deg)
     rotateY(0deg)
     rotateZ(0deg)
     skew(0deg,1deg);
+  z-index:2;
 }
 
 .letter:hover:before{
@@ -118,23 +112,22 @@ div.master-title{
   padding: 5px;
 }
 
-
-p.social-media-text{
-
-  font-family: Georgia, Helvetica, sans-serif;
-  text-align: center;
-  border: dashed white;
-  border-radius: 5px;
-  background-color: lightgrey;
+p.desc{
+    border-color: green;
+    border-style: double;
+    border-width: thin;
+    text-align: center;
 }
+
+
         
 
 p.portfolio_text{
+    background-color: lightgrey;
+    border: medium dotted red;
+    border-radius: 5px;
     font: Andale Mono, monospace;
-    text-align: center;
-    border: medium dotted red;
-    border-radius: 5px;
-    background-color: lightgrey;
+    text-align: center;  
 }
 
 p.randomMsg_text{
@@ -151,29 +144,38 @@ p.randomMsg_text{
     text-align: center;
 }
 
+p.social-media-text{
+  background-color: lightgrey;
+  border: dashed white;
+  border-radius: 5px;
+  font-family: Georgia, Helvetica, sans-serif;
+  text-align: center;
+}
 
 .social-media-button:hover {
-  background:linear-gradient(to bottom, #415989 5%, #2e466e 100%);
-  background-color:#415989;
+    background-color:#415989;
+    background:linear-gradient(to bottom, #415989 5%, #2e466e 100%);
+  
 }
+
 .social-media-button:active {
-  position:relative;
-  top:1px;
+    position:relative;
+    top:1px;
 }
 
 .typewrite h2 {
-  font: Andale Mono, monospace;
+    font: Andale Mono, monospace;
 }
 /*typewriter attempt */
 .typewriter h2 {
-  overflow: hidden; 
-  border-right: .15em solid white; 
-  white-space: nowrap; 
-  margin: 0 auto; 
-  letter-spacing: .20em; 
-  animation: 
+    animation: 
     typing 3.5s steps(50, end),
     blink-caret .9s step-end infinite;
+    border-right: .15em solid white;
+    letter-spacing: .20em; 
+    margin: 0 auto; 
+    overflow: hidden; 
+    white-space: nowrap;   
 }
 
 @keyframes typing {
