@@ -30,11 +30,24 @@ body{
     
 }
 
+div.greeting-container{
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
 div.master-title{
   margin: 0 auto;
   text-align: center;
   width: 100%;
 }
+
+div.social-media{
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
 
 h1{
     border-color: red;
@@ -166,6 +179,7 @@ p.social-media-text{
 .typewrite h2 {
     font: Andale Mono, monospace;
 }
+
 /*typewriter attempt */
 .typewriter h2 {
     animation: 
