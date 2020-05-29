@@ -2,28 +2,49 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>My Portfolio</title>
+    <title>Ruchi's Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
   <body>
     <div id="content">
-      <h1>Ruchi Shah's Portfolio</h1>
-      <p class="portfolio_text">This is my personal portfolio. Scroll to learn more about me.</p>
-      
-      
+      <h1>MY PORTFOLIO</h1>
+
+      <div class="master-title">
+        <span class="letter" data-letter="R">R</span>
+        <span class="letter" data-letter="U">U</span>
+        <span class="letter" data-letter="C">C</span>
+        <span class="letter" data-letter="H">H</span>
+        <span class="letter" data-letter="I">I</span>
+        <span class="letter" data-letter="S">S</span>
+        <span class="letter" data-letter="H">H</span>
+        <span class="letter" data-letter="A">A</span>
+        <span class="letter" data-letter="H">H</span>
+      </div>
+
+      <!-- <p class="portfolio_text">This is my personal portfolio. Scroll to learn more about me.</p> -->
+      <h2>
+        <center> <p class="typewrite" data-period="2000" data-type='[ "Hi, Nice to meet you.", "Welcome to my Webpage.", "Excited to show you my portfolio.", "Enjoy!" ]'> 
+        </p> <center>
+      </h2>
+
+
+       
       <img src="images/ruchipic.jpg" class="center"/>
-      <p class="portfolio_text">Click below to learn a random fact about me:</p>
-       <button onclick="addRandomGreeting()">Learn a random fact about me!</button>
-       <div id="greeting-container"></div>
+      <center> <div id="greeting-container"></div>
+      <div id="greeting-container"></div>
+      <div onclick="addRandomGreeting()"><img src="images/funfact.png"></div>
+      </center>
+
       <p class="desc"> Thanks for visiting my site! I'm currently a rising Junior at UC Berkeley
         and I'm majoring in Computer Science and minoring in Public Policy! Throughout my experiences 
         in various hackathons, projects, and leadership experiences, I hope to create tangible change that
         is beneficial for some of the most marginalized communities in the world. </br> </br>
         This year, I'm honored to intern in the Student Training in Engineering Program and look forward to 
-        learning about all of the development that the Geo Services Team makes in the upcoming weeks. </p>
-        
+        learning about all of the development that the Geo Services Team makes in the upcoming weeks.</p>
+  <div class="typewriter">
     <h2> Courses Completed: </h2>
+  </div>
     <ul>
         <li>Data Structures</li>
         <li>Great Ideas of Computer Architecture</li>
@@ -32,7 +53,9 @@
         <li>Designing Information Devices and Systems II</li>
     </ul>
 
+  <div class="typewriter">
     <h2> Leadership Experience: </h2>
+  </div>
     <ul>
         <li>President of FEMTech at Berkeley, Organization</li>
         <li>ASUC Senator, Student Government</li>
@@ -41,11 +64,13 @@
         <li>Committee Member of Haas Business Student Association, Student Government</li>
     </ul>
 
+  <div class="typewriter">
     <h2> Projects Portfolio</h2>
+  </div>
 
     <ul>
         <li>S.T.O.P.
-            <ul>
+          <ul>
             <li>An application to prevent domestic/sexual violence. The application included tips on navigating the situation, 
                 what to do in an emergency, and information about the issue to raise awareness.</li>
                 <li> <a href="https://ruchiishahh.github.io/stop/"/>Learn more here!</a></li>
@@ -66,20 +91,42 @@
         </li>
     </ul>
 
+    <div class="typewriter">
     <h2> Passions, Hobbies, and Pass-times </h2>
+    </div>
     <ul>
         <li>Playing Basketball</li>
         <li>Cultural Dance</li>
         <li>Drawing & replicating art</li>
         <li>Board Games</li>
-    </ul>
+        </ul>
 
-    <p class="linkedIn_text">Click to view my LinkedIn:</p>
-       <button><a href="https://www.linkedin.com/in/ruchi-shahh/"/>LinkedIn!</a></button>
+        <div id="cohort" class="podmates-container">
+            <h2>STEP 2020 Geo Podmates!</h2>
+            <div id="owen" class="owen-container">
+                <h4> Owen Zhang</h4>
+                <p> Owen is a Business + Compsci Joint Degree student at Washington University in St. Louis. He values kindess and trust, and cares too much about the people around him!</p>
+                <img class="center" src="images/owen.jpg" />
+            </div>
+        </div>
 
-    <p class="github_text">Click to view my Github:</p>
-       <button><a href="https://github.com/ruchiishahh"/>Github!</a></button>
+
+        <div id="erin-container">
+            <h4> Erin Limbo </h4>
+            <div>
+                <p> Hey there! I am one of Ruchi's podmates for Google's 2020 STEP internship! I am an incoming sophomore studyin Computer Science at UC Berkeley. I love to play basketball, video games, and watch stocks! I am so excited to be working with Owen and Ruchi :D
+                </p>
+                <div> <img id="erin" src="images/erin.JPG"/> </div>
+
+            </div>
+        </div> 
+
+
+      <h1>View my LinkedIn & Github:</h1>
+      <center> <a href="https://www.linkedin.com/in/ruchi-shahh/" class="social-media-button"><img src="images/linkedin.png"/></a> 
+      <a href="https://github.com/ruchiishahh" class="social-media-button"><img src="images/github.png"/></a> </center>
+    
    
-    </div>
+    
   </body>
 </html>

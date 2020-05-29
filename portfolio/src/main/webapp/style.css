@@ -1,3 +1,10 @@
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
@@ -10,8 +17,24 @@
 
 
 body{
+    align-items: center;
+    background-color: #fac564;
     background-color: lightblue;
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/5908/food.png);
+    display: flex;
+    font-family: "Montserrat", sans-serif;
+    flex-direction: column;
+    font-smoothing: antialiased;
+    justify-content: center;
     margin: auto;
+    
+}
+
+p.desc{
+    border-style: double;
+    border-width: thin;
+    border-color: green;
+    text-align: center;
 }
 
 
@@ -19,14 +42,103 @@ h1{
     border-style: solid;
     border-width: medium;
     border-color: red;
-    font-family: Verdana, Geneva, Tahoma, sans-serif, cursive;
-    font-weight:normal;
-    font-size:24px;
-    padding-top: 60px;
     text-align: center;
 }
 
+*, *:before, *:after{
+  box-sizing:border-box;
+}
+
+div.master-title{
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+
+}
+.letter{
+  display: inline-block;
+  font-weight: 500;
+  font-size: 2em;
+  margin: 0.2em;
+  position: relative;
+  color: #00B4F1;
+  transform-style: flat | preserve-3d;
+  perspective: 400;
+  z-index: 1;
+}
+
+.letter:before, .letter:after{
+  position:absolute;
+  content: attr(data-letter);
+  transform-origin: top left;
+  top:0;
+  left:0;
+}
+.letter, .letter:before, .letter:after{
+  transition: all 0.3s ease-in-out;
+}
+.letter:before{
+  color: #fff;
+  z-index: 3;
+  transform:
+    rotateX(0deg)
+    rotateY(-15deg)
+    rotateZ(0deg);
+}
+.letter:after{
+  color: rgba(4,2,0,.11);
+  z-index:2;
+  transform:
+    scale(1.08,1)
+    rotateX(0deg)
+    rotateY(0deg)
+    rotateZ(0deg)
+    skew(0deg,1deg);
+}
+
+.letter:hover:before{
+  color: #fafafa;
+  transform:
+    rotateX(0deg)
+    rotateY(-90deg)
+    rotateZ(0deg);
+}
+
+.letter:hover:after{
+  transform:
+    scale(1.08,1)
+    rotateX(0deg)
+    rotateY(90deg)
+    rotateZ(0deg)
+    skew(0deg,22deg);
+}
+
+#owen {
+  border-radius: 10px;
+  border: 2px dotted orange;
+  padding: 5px;
+}
+
+
+p.social-media-text{
+
+  font-family: Georgia, Helvetica, sans-serif;
+  text-align: center;
+  border: dashed white;
+  border-radius: 5px;
+  background-color: lightgrey;
+}
+        
+
 p.portfolio_text{
+    font: Andale Mono, monospace;
+    text-align: center;
+    border: medium dotted red;
+    border-radius: 5px;
+    background-color: lightgrey;
+}
+
+p.randomMsg_text{
     background-color: lightgrey;
     border: medium dotted red;
     border-radius: 5px;
@@ -40,17 +152,37 @@ p.randomMsg_text{
     text-align: center;
 }
 
-p.desc{
-    border-style: double;
-    border-width: thin;
-    border-color: green;
-    text-align: center;
+
+.social-media-button:hover {
+  background:linear-gradient(to bottom, #415989 5%, #2e466e 100%);
+  background-color:#415989;
+}
+.social-media-button:active {
+  position:relative;
+  top:1px;
 }
 
+.typewrite h2 {
+  font: Andale Mono, monospace;
+}
+/*typewriter attempt */
+.typewriter h2 {
+  overflow: hidden; 
+  border-right: .15em solid white; 
+  white-space: nowrap; 
+  margin: 0 auto; 
+  letter-spacing: .20em; 
+  animation: 
+    typing 3.5s steps(50, end),
+    blink-caret .9s step-end infinite;
+}
 
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange }
 }
