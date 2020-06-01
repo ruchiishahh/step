@@ -119,6 +119,18 @@ h1{
     skew(0deg,22deg);
 }
 
+.name-button:hover {
+    background-color:#121e35;
+    background:linear-gradient(to bottom, #bb2f0c 5%, #2e466e 100%);
+  
+}
+
+.name-button:active {
+    background-color:#bb2f0c;
+    position:relative;
+    top:1px;
+}
+
 #owen {
   border-radius: 10px;
   border: 2px dotted orange;
