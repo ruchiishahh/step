@@ -1,3 +1,10 @@
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
 #content {
   margin-left: auto;
   margin-right: auto;
@@ -10,42 +17,187 @@
 
 
 body{
-    margin: auto;
+    align-items: center;
+    background-color: #fac564;
     background-color: lightblue;
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/5908/food.png);
+    display: flex;
+    flex-direction: column;
+    font-family: "Montserrat", sans-serif;
+    font-smoothing: antialiased;
+    justify-content: center;
+    margin: auto;
+    
 }
+
+div.greeting-container{
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+div.master-title{
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
+div.social-media{
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+
 
 h1{
-    text-align: center;
+    border-color: red;
     border-style: solid;
     border-width: medium;
-    border-color: red;
-}
-
-p.portfolio_text{
     text-align: center;
-    border: medium dotted red;
-    border-radius: 5px;
-    background-color: lightgrey;
-  
 }
 
-p.desc{
-    text-align: center;
-    border-style: double;
-    border-width: thin;
-    border-color: green;
+*, *:before, *:after{
+  box-sizing:border-box;
 }
 
 
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+.letter{
+  color: #00B4F1;
+  display: inline-block;
+  font-size: 2em;
+  font-weight: 500;
+  margin: 0.2em;
+  perspective: 400;
+  position: relative;
+  transform-style: flat | preserve-3d;
+  z-index: 1;
+}
+
+.letter:before, .letter:after{
+  content: attr(data-letter);
+  left:0;
+  position:absolute;
+  top:0;
+  transform-origin: top left;
+}
+.letter, .letter:before, .letter:after{
+  transition: all 0.3s ease-in-out;
+}
+.letter:before{
+  color: #fff;
+  transform:
+    rotateX(0deg)
+    rotateY(-15deg)
+    rotateZ(0deg);
+  z-index: 3;
+}
+.letter:after{
+  color: rgba(4,2,0,.11);
+  transform:
+    scale(1.08,1)
+    rotateX(0deg)
+    rotateY(0deg)
+    rotateZ(0deg)
+    skew(0deg,1deg);
+  z-index:2;
+}
+
+.letter:hover:before{
+  color: #fafafa;
+  transform:
+    rotateX(0deg)
+    rotateY(-90deg)
+    rotateZ(0deg);
+}
+
+.letter:hover:after{
+  transform:
+    scale(1.08,1)
+    rotateX(0deg)
+    rotateY(90deg)
+    rotateZ(0deg)
+    skew(0deg,22deg);
 }
 
 #owen {
   border-radius: 10px;
   border: 2px dotted orange;
   padding: 5px;
+}
+
+p.desc{
+    border-color: green;
+    border-style: double;
+    border-width: thin;
+    text-align: center;
+}
+
+
+        
+
+p.portfolio_text{
+    background-color: lightgrey;
+    border: medium dotted red;
+    border-radius: 5px;
+    font: Andale Mono, monospace;
+    text-align: center;  
+}
+
+p.randomMsg_text{
+    background-color: lightgrey;
+    border: medium dotted red;
+    border-radius: 5px;
+    text-align: center;
+}
+
+p.randomMsg_text{
+    background-color: lightgrey;
+    border: medium dotted red;
+    border-radius: 5px;
+    text-align: center;
+}
+
+p.social-media-text{
+  background-color: lightgrey;
+  border: dashed white;
+  border-radius: 5px;
+  font-family: Georgia, Helvetica, sans-serif;
+  text-align: center;
+}
+
+.social-media-button:hover {
+    background-color:#415989;
+    background:linear-gradient(to bottom, #415989 5%, #2e466e 100%);
+  
+}
+
+.social-media-button:active {
+    position:relative;
+    top:1px;
+}
+
+.typewrite h2 {
+    font: Andale Mono, monospace;
+}
+
+/*typewriter attempt */
+.typewriter h2 {
+    animation: 
+    typing 3.5s steps(50, end),
+    blink-caret .9s step-end infinite;
+    border-right: .15em solid white;
+    letter-spacing: .20em; 
+    margin: 0 auto; 
+    overflow: hidden; 
+    white-space: nowrap;   
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange }
 }
