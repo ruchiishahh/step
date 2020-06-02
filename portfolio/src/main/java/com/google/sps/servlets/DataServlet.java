@@ -28,7 +28,7 @@ import java.util.List;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
     //ArrayList<String> dataComments = new ArrayList<String>(Arrays.asList("Lebron James", "Kobe Bryant", "Michael Jordan"));
-    ArrayList<String> dataComments = new ArrayList<String>();
+    ArrayList<DataComment> dataComments = new ArrayList<DataComment>();
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -48,8 +48,9 @@ public class DataServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     // Get the input from the form.
     String text = getParameter(request, "text-input", "");
-    dataComments.add(text);
-    
+
+    dataComments.add(new DataComment("Anonymous", text, ""));
+
     // Respond with the result.
     response.sendRedirect("/index.html");
   }

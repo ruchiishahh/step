@@ -29,7 +29,7 @@ function getDataComment() {
       const commentContainer = document.getElementById("dataComment-container");
       dataComments.forEach(dataComment => { 
           let miniP = document.createElement("p");
-          miniP.innerText = "Basketball Player: " + dataComment;
+          miniP.innerText = "Basketball Player: " + dataComment.message;
           commentContainer.appendChild(miniP);
       })
   });
