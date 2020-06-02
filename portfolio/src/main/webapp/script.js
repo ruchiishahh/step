@@ -17,7 +17,7 @@
  */
 function getNameUsingArrowFunctions() {
     fetch('/data').then(response => response.text()).then((name) => {
-    document.getElementById('name-container').innerText = name;
+        document.getElementById('name-container').innerText = name;
     });
 }
 

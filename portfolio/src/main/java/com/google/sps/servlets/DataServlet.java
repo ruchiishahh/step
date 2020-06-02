@@ -19,14 +19,45 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
     private String name = "Ruchi";
+    
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    response.setContentType("text/html;");
-    response.getWriter().println("Hello "+ name + "!");
+    //response.setContentType("text/html;");
+    //response.getWriter().println("Hello " + name + "!");
+
+    ArrayList<String> sampleNames = new ArrayList<String>();
+    sampleNames.add("Lebron James");
+    sampleNames.add("Kobe Bryant");
+    sampleNames.add("Michael Jordan");
+
+    String json = convertToJson(sampleNames);
+
+    // Send the JSON as the response
+    response.setContentType("application/json;");
+    response.getWriter().println(json);
+  }
+
+  /**
+   * Converts a ServerStats instance into a JSON string using manual String concatentation.
+   */
+  private String convertToJson(ArrayList<String> list) {
+    String json = "{";
+    json += "\"first name\": ";
+    json += "\"" + list.get(0) + "\"";
+    json += ", ";
+    json += "\"second name\": ";
+    json += "\"" + list.get(1) + "\"";
+    json += ", ";
+    json += "\"third name\": ";
+    json += "\"" + list.get(2) + "\""; 
+    json += "}";
+    return json;
   }
 }
