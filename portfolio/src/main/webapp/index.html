@@ -6,13 +6,9 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getDataComment()">
     <div id="content">
       <h1>MY PORTFOLIO</h1>
-        <h1>Generate a Name:
-            <a onclick="getNameUsingArrowFunctions()" class="name-button">Click here!</a> 
-        <div id="name-container"></div> 
-        </h1>
         <!-- <h1> Click <a href="/data"> here! </a> </h1> -->
       <div class="master-title">
         <span class="letter" data-letter="R">R</span>
@@ -38,6 +34,13 @@
         <div id="greeting-container"></div>
         <div onclick="addRandomGreeting()"><img src="images/funfact.png"></div>
       </div>
+      
+      <form action="/data" method="POST"> 
+        <h2> Enter a basketball player here: </h2>
+        <textarea name="text-input"></textarea>
+        <input type="submit"/>
+      </form>
+        <div id="dataComment-container"></div>
 
       <p class="desc"> Thanks for visiting my site! I'm currently a rising Junior at UC Berkeley
         and I'm majoring in Computer Science and minoring in Public Policy! Throughout my experiences 
@@ -73,8 +76,8 @@
 
     <ul>
         <li>S.T.O.P.
-          <ul>
-              <li>An application to prevent domestic/sexual violence. The application included tips on navigating the situation, 
+            <ul>
+                <li>An application to prevent domestic/sexual violence. The application included tips on navigating the situation, 
                 what to do in an emergency, and information about the issue to raise awareness.</li>
                 <li> <a href="https://ruchiishahh.github.io/stop/"/>Learn more here!</a></li>
             </ul>
@@ -102,7 +105,7 @@
         <li>Cultural Dance</li>
         <li>Drawing & replicating art</li>
         <li>Board Games</li>
-        </ul>
+    </ul>
 
         <div id="cohort" class="podmates-container">
             <h2>STEP 2020 Geo Podmates!</h2>

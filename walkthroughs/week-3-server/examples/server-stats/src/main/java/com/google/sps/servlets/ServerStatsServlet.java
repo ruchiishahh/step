@@ -63,14 +63,5 @@ public final class ServerStatsServlet extends HttpServlet {
     json += "}";
     return json;
   }
-
-  /**
-   * Converts a ServerStats instance into a JSON string using the Gson library. Note: We first added
-   * the Gson library dependency to pom.xml.
-   */
-  private String convertToJsonUsingGson(ServerStats serverStats) {
-    Gson gson = new Gson();
-    String json = gson.toJson(serverStats);
-    return json;
-  }
+  
 }
