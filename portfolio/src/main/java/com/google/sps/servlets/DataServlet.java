@@ -16,6 +16,10 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
+
 import com.google.gson.Gson;
 import com.google.sps.data.DataComment;
 
@@ -31,11 +35,23 @@ import java.util.List;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    ArrayList<DataComment> dataComments = new ArrayList<DataComment>();
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Send the JSON as the response
+        Query query = new Query("DataComment").addSort("dateCreated", SortDirection.DESCENDING);
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        PreparedQuery results = datastore.prepare(query);
+        List<DataComment> dataComments = new ArrayList<>();
+        for (Entity entity : results.asIterable()) {
+            long id = entity.getKey().getId();
+            String message = (String) entity.getProperty("message");
+            String creator = (String) entity.getProperty("creator");
+            String dateCreated = (String) entity.getProperty("dateCreated");
+            
+            DataComment dataComment = new DataComment(id, creator, message, dateCreated);
+            dataComments.add(dataComment);
+        }
+
         response.setContentType("application/json;");
         String json = convertToJsonByGson(dataComments);
         response.getWriter().println(json);
@@ -49,20 +65,17 @@ public class DataServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String text = getParameter(request, "text-input", "");
+        String message = request.getParameter("text-input");
         String creator = "Unknown";
-        String messageCreated = "June 2nd";
+        String dateCreated = "June 2nd";
 
-        Entity messageEntity = new Entity("Data Comment");
-        messageEntity.setProperty("message", text);
+        Entity messageEntity = new Entity("DataComment");
+        messageEntity.setProperty("message", message);
         messageEntity.setProperty("creator", creator);
-        messageEntity.setProperty("date created", messageCreated);
+        messageEntity.setProperty("dateCreated", dateCreated);
 
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         datastore.put(messageEntity);
-
-        //dataComments.add(new DataComment("Anonymous", text, ""));
-        // Respond with the result.
         response.sendRedirect("/index.html");
     }
     
