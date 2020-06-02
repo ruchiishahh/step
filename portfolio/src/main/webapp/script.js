@@ -17,8 +17,22 @@
  */
 function getNameUsingArrowFunctions() {
     fetch('/data').then(response => response.text()).then((name) => {
-        document.getElementById('name-container').innerText = name;
+        document.getElementById('dataComment-container').innerText = name;
     });
+}
+
+/**
+ * Fetches stats from the servers and adds them to the DOM.
+ */
+function getDataComment() {
+  fetch('/data').then(response => response.json()).then((dataComments) => {
+      const commentContainer = document.getElementById("dataComment-container");
+      dataComments.forEach(dataComment => { 
+          let miniP = document.createElement("p");
+          miniP.innerText = "Basketball Player: " + dataComment;
+          commentContainer.appendChild(miniP);
+      })
+  });
 }
 
 /**
