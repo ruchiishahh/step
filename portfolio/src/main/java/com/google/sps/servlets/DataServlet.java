@@ -12,8 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 package com.google.sps.servlets;
-import com.google.sps.data.DataComment;
+
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import com.google.gson.Gson;
+import com.google.sps.data.DataComment;
 
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
@@ -27,7 +31,6 @@ import java.util.List;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    //ArrayList<String> dataComments = new ArrayList<String>(Arrays.asList("Lebron James", "Kobe Bryant", "Michael Jordan"));
     ArrayList<DataComment> dataComments = new ArrayList<DataComment>();
 
     @Override
@@ -46,24 +49,25 @@ public class DataServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get the input from the form.
-    String text = getParameter(request, "text-input", "");
+        String text = getParameter(request, "text-input", "");
+        String creator = "Unknown";
+        String messageCreated = "June 2nd";
 
-    dataComments.add(new DataComment("Anonymous", text, ""));
+        Entity messageEntity = new Entity("Data Comment");
+        messageEntity.setProperty("message", text);
+        messageEntity.setProperty("creator", creator);
+        messageEntity.setProperty("date created", messageCreated);
 
-    // Respond with the result.
-    response.sendRedirect("/index.html");
-  }
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        datastore.put(messageEntity);
 
-  /**
-   * @return the request parameter, or the default value if the parameter
-   *         was not specified by the client
-   */
-  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
-    String value = request.getParameter(name);
-    if (value == null) {
-      return defaultValue;
+        //dataComments.add(new DataComment("Anonymous", text, ""));
+        // Respond with the result.
+        response.sendRedirect("/index.html");
     }
-    return value;
-  }
+    
+    private String getParameter(HttpServletRequest request, String name, String defaultValue) {
+        String value = request.getParameter(name);
+        return value == null ? defaultValue : value;
+    }
 }

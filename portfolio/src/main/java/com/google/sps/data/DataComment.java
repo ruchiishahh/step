@@ -1,6 +1,6 @@
 package com.google.sps.data;
 
-/** Class containing server statistics. */
+/** Class containing comments*/
 public final class DataComment {
 
   private final String creator;
