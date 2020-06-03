@@ -41,6 +41,8 @@ public class DataServlet extends HttpServlet {
         Query query = new Query("DataComment").addSort("dateCreated", SortDirection.DESCENDING);
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         PreparedQuery results = datastore.prepare(query);
+
+        
         List<DataComment> dataComments = new ArrayList<>();
         for (Entity entity : results.asIterable()) {
             long id = entity.getKey().getId();
@@ -51,7 +53,7 @@ public class DataServlet extends HttpServlet {
             DataComment dataComment = new DataComment(id, creator, message, dateCreated);
             dataComments.add(dataComment);
         }
-
+        
         response.setContentType("application/json;");
         String json = convertToJsonByGson(dataComments);
         response.getWriter().println(json);
@@ -68,7 +70,6 @@ public class DataServlet extends HttpServlet {
         String message = request.getParameter("text-input");
         String creator = "Unknown";
         String dateCreated = "June 2nd";
-
         Entity messageEntity = new Entity("DataComment");
         messageEntity.setProperty("message", message);
         messageEntity.setProperty("creator", creator);
@@ -79,8 +80,4 @@ public class DataServlet extends HttpServlet {
         response.sendRedirect("/index.html");
     }
     
-    private String getParameter(HttpServletRequest request, String name, String defaultValue) {
-        String value = request.getParameter(name);
-        return value == null ? defaultValue : value;
-    }
 }

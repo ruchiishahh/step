@@ -20,7 +20,7 @@ function getNameUsingArrowFunctions() {
         document.getElementById('dataComment-container').innerText = name;
     });
 }
- 
+
 /**
  * Fetches stats from the servers and adds them to the DOM.
  */
