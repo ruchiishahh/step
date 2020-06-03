@@ -50,7 +50,6 @@ public class ListTasksServlet extends HttpServlet {
       Task task = new Task(id, title, timestamp);
       tasks.add(task);
     }
-    
     Gson gson = new Gson();
 
     response.setContentType("application/json;");
