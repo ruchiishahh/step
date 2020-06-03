@@ -37,9 +37,10 @@
       
       <form action="/data" method="POST"> 
         <h2> Enter a basketball player here: </h2>
-        <textarea name="text-input"></textarea>
-        <input type="submit"/>
+        <input type="text" name="text-input" minlength="1" maxlength="50" title="50 characters minimum" required>
+        <input type="submit" value="Submit!"/>
       </form>
+      <button id="delete-dataComments" onclick="deleteDataComments()"> Delete previous submisssions </button>
         <div id="dataComment-container"></div>
 
       <p class="desc"> Thanks for visiting my site! I'm currently a rising Junior at UC Berkeley

@@ -16,6 +16,7 @@ package com.google.sps.servlets;
 import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
@@ -35,16 +36,17 @@ import java.util.List;
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
+    private int numOfComments = 10;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Query query = new Query("DataComment").addSort("dateCreated", SortDirection.DESCENDING);
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         PreparedQuery results = datastore.prepare(query);
+        List<Entity> entityResults = results.asList(FetchOptions.Builder.withLimit(numOfComments));
 
-        
         List<DataComment> dataComments = new ArrayList<>();
-        for (Entity entity : results.asIterable()) {
+        for (Entity entity : entityResults) {
             long id = entity.getKey().getId();
             String message = (String) entity.getProperty("message");
             String creator = (String) entity.getProperty("creator");
