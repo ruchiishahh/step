@@ -25,9 +25,11 @@ function getNameUsingArrowFunctions() {
  * Fetches stats from the servers and adds them to the DOM.
  */
 function getDataComment() {
-  fetch('/data').then(response => response.json()).then((dataComments) => {
+    fetch('/data').then(response => response.json()).then((dataComments) => {
       const commentContainer = document.getElementById("dataComment-container");
-      dataComments.forEach(dataComment => { 
+      var numOfCommentsToDisplay = 5;
+      
+      dataComments.splice(0, numOfCommentsToDisplay).forEach(dataComment => { 
           let miniP = document.createElement("p");
           miniP.innerText = "Basketball Player: " + dataComment.message;
           commentContainer.appendChild(miniP);
