@@ -21,13 +21,14 @@ function getNameUsingArrowFunctions() {
     });
 }
 
+
 /**
  * Fetches stats from the servers and adds them to the DOM.
  */
 function getDataComment() {
     fetch('/data').then(response => response.json()).then((dataComments) => {
       const commentContainer = document.getElementById("dataComment-container");
-      var numOfCommentsToDisplay = 5;
+      const numOfCommentsToDisplay = document.getElementById("numComments").value;
       
       dataComments.splice(0, numOfCommentsToDisplay).forEach(dataComment => { 
           let miniP = document.createElement("p");
@@ -38,6 +39,14 @@ function getDataComment() {
 }
 
 /**
+ * Takes in user input's choice of number of comments to display.
+ */
+function getDiffNumberOfDataComments() {
+    document.getElementById("dataComment-container").innerText = "";
+    getDataComment();
+}
+
+/**
  * Deletes the dataComments from the servers and reflect on DOM.
  */
 function deleteDataComments(){
@@ -45,6 +54,7 @@ function deleteDataComments(){
         method: 'POST',
     }).then(getDataComments());
 }
+
 
 /**
  * Adds a random greeting to the page.
