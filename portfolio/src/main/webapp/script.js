@@ -35,6 +35,14 @@ function getDataComment() {
   });
 }
 
+/**
+ * Deletes the dataComments from the servers and reflect on DOM.
+ */
+function deleteDataComments(){
+    fetch('/deletedatacomments', {
+        method: 'POST',
+    }).then(getDataComments());
+}
 
 /**
  * Adds a random greeting to the page.

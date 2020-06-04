@@ -12,8 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 package com.google.sps.servlets;
-import com.google.sps.data.DataComment;
+
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
+
 import com.google.gson.Gson;
+import com.google.sps.data.DataComment;
 
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
@@ -23,16 +32,28 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
-    //ArrayList<String> dataComments = new ArrayList<String>(Arrays.asList("Lebron James", "Kobe Bryant", "Michael Jordan"));
-    ArrayList<DataComment> dataComments = new ArrayList<DataComment>();
+    private int numOfComments = 10;
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Send the JSON as the response
+        Query query = new Query("DataComment").addSort("dateCreated", SortDirection.DESCENDING);
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        PreparedQuery results = datastore.prepare(query);
+        List<Entity> entityResults = results.asList(FetchOptions.Builder.withLimit(numOfComments));
+            
+        List<DataComment> dataComments = entityResults.stream().map(entity -> {
+            long id = entity.getKey().getId();
+            String message = (String) entity.getProperty("message");
+            String creator = (String) entity.getProperty("creator");
+            String dateCreated = (String) entity.getProperty("dateCreated");
+            return new DataComment(id, creator, message, dateCreated);
+        }).collect(Collectors.toList());
+
         response.setContentType("application/json;");
         String json = convertToJsonByGson(dataComments);
         response.getWriter().println(json);
@@ -46,24 +67,17 @@ public class DataServlet extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    // Get the input from the form.
-    String text = getParameter(request, "text-input", "");
+        String message = request.getParameter("text-input");
+        String creator = "Unknown";
+        String dateCreated = "June 2nd";
+        Entity messageEntity = new Entity("DataComment");
+        messageEntity.setProperty("message", message);
+        messageEntity.setProperty("creator", creator);
+        messageEntity.setProperty("dateCreated", dateCreated);
 
-    dataComments.add(new DataComment("Anonymous", text, ""));
-
-    // Respond with the result.
-    response.sendRedirect("/index.html");
-  }
-
-  /**
-   * @return the request parameter, or the default value if the parameter
-   *         was not specified by the client
-   */
-  private String getParameter(HttpServletRequest request, String name, String defaultValue) {
-    String value = request.getParameter(name);
-    if (value == null) {
-      return defaultValue;
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        datastore.put(messageEntity);
+        response.sendRedirect("/index.html");
     }
-    return value;
-  }
+    
 }

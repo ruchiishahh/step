@@ -24,7 +24,6 @@ body{
     display: flex;
     flex-direction: column;
     font-family: "Montserrat", sans-serif;
-    font-smoothing: antialiased;
     justify-content: center;
     margin: auto;
     
