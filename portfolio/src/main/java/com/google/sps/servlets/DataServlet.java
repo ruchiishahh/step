@@ -45,18 +45,15 @@ public class DataServlet extends HttpServlet {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         PreparedQuery results = datastore.prepare(query);
         List<Entity> entityResults = results.asList(FetchOptions.Builder.withLimit(numOfComments));
-   
-        List<DataComment> dataComments = new ArrayList<>();
-        for (Entity entity : entityResults) {
+            
+        List<DataComment> dataComments = entityResults.stream().map(entity -> {
             long id = entity.getKey().getId();
             String message = (String) entity.getProperty("message");
             String creator = (String) entity.getProperty("creator");
             String dateCreated = (String) entity.getProperty("dateCreated");
-            
-            DataComment dataComment = new DataComment(id, creator, message, dateCreated);
-            dataComments.add(dataComment);
-        }
-        
+            return new DataComment(id, creator, message, dateCreated);
+        }).collect(Collectors.toList());
+
         response.setContentType("application/json;");
         String json = convertToJsonByGson(dataComments);
         response.getWriter().println(json);

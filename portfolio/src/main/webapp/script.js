@@ -36,7 +36,7 @@ function getDataComment() {
 }
 
 /**
- * Deletes the dataComments from the servers.
+ * Deletes the dataComments from the servers and reflect on DOM.
  */
 function deleteDataComments(){
     fetch('/deletedatacomments', {
