@@ -32,6 +32,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/data")
@@ -44,7 +45,7 @@ public class DataServlet extends HttpServlet {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         PreparedQuery results = datastore.prepare(query);
         List<Entity> entityResults = results.asList(FetchOptions.Builder.withLimit(numOfComments));
-
+   
         List<DataComment> dataComments = new ArrayList<>();
         for (Entity entity : entityResults) {
             long id = entity.getKey().getId();

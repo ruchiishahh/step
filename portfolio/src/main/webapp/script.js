@@ -35,6 +35,9 @@ function getDataComment() {
   });
 }
 
+/**
+ * Deletes the dataComments from the servers.
+ */
 function deleteDataComments(){
     fetch('/deletedatacomments', {
         method: 'POST',
