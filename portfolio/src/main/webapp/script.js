@@ -21,29 +21,20 @@ function getNameUsingArrowFunctions() {
     });
 }
 
-
 /**
  * Fetches stats from the servers and adds them to the DOM.
  */
 function getDataComment() {
     fetch('/data').then(response => response.json()).then((dataComments) => {
-      const commentContainer = document.getElementById("dataComment-container");
-      const numOfCommentsToDisplay = document.getElementById("numComments").value;
-      
-      dataComments.splice(0, numOfCommentsToDisplay).forEach(dataComment => { 
-          let miniP = document.createElement("p");
-          miniP.innerText = "Basketball Player: " + dataComment.message;
-          commentContainer.appendChild(miniP);
-      })
-  });
-}
-
-/**
- * Takes in user input's choice of number of comments to display.
- */
-function getDiffNumberOfDataComments() {
-    document.getElementById("dataComment-container").innerText = "";
-    getDataComment();
+        document.getElementById("dataComment-container").innerText = "";
+        const commentContainer = document.getElementById("dataComment-container");
+        const numOfCommentsToDisplay = document.getElementById("numComments").value;
+        dataComments.splice(0, numOfCommentsToDisplay).forEach(dataComment => { 
+            let miniP = document.createElement("p");
+            miniP.innerText = "Basketball Player: " + dataComment.message;
+            commentContainer.appendChild(miniP);
+        })
+    });
 }
 
 /**
@@ -54,7 +45,6 @@ function deleteDataComments(){
         method: 'POST',
     }).then(getDataComments());
 }
-
 
 /**
  * Adds a random greeting to the page.
