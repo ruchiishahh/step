@@ -46,6 +46,33 @@ function deleteDataComments(){
     }).then(getDataComments());
 }
 
+var logStatus;
+
+/**
+ * Checks log-in Status & hides comments by default. 
+ */
+async function loadWebPage() {
+    logStatus = (await getLogStatus() == 'true');
+    getDataComment();
+    if (logStatus) {
+        const inputForm = document.getElementById("input-container");
+        inputForm.style.display = "block";
+    } else {
+        const loginPrompt = document.getElementById("login-container");
+        loginPrompt.innerText = "To add a comment you must login.";
+
+    }
+}
+
+/**
+ * Fetches log-in status from the servlet
+ */
+async function getLogStatus() {
+    const response = await fetch('/user-login');
+    let isLoggedIn = await response.text();
+    return isLoggedIn;
+}
+
 /**
  * Adds a random greeting to the page.
  */

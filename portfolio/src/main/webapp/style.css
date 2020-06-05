@@ -71,6 +71,9 @@ h1{
   box-sizing:border-box;
 }
 
+#input-container { 
+    display: none;
+}
 
 .letter{
   color: #00B4F1;
