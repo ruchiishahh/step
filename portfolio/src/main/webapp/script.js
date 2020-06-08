@@ -88,7 +88,7 @@ function login() {
  * Fetches log-in status from the servlet
  */
 async function getLogStatus() {
-    const response = await fetch('/user-login');
+    const response = await fetch('/user-log');
     const isLoggedIn = await response.text();
     return isLoggedIn;
 }
