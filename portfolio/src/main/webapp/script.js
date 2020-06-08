@@ -69,7 +69,7 @@ async function loadWebPage() {
  */
 async function getLogStatus() {
     const response = await fetch('/user-login');
-    let isLoggedIn = await response.text();
+    const isLoggedIn = await response.text();
     return isLoggedIn;
 }
 
@@ -151,4 +151,3 @@ window.onload = function() {
     css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #000}";
     document.body.appendChild(css);
 };
-
