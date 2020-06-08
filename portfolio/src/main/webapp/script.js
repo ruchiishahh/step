@@ -46,43 +46,26 @@ function deleteDataComments(){
     }).then(getDataComments());
 }
 
-var logStatus;
-
 /**
  * Checks log-in Status & hides comments by default. 
  */
 async function loadWebPage() {
     const inputForm = document.getElementById("input-container");
-    const login = document.getElementById("user-login");
-    const loginURL = document.getElementById("user-login-url");
-    logStatus = (await getLogStatus() !== 'false');
+    const logContainer = document.getElementById("login-container");
+    const loginLink = document.getElementById("admin-user-link");
     getDataComment();
-    if (logStatus) {
-        loginURL.href = "/user-login.html"
-        loginURL.innerHTML = "logout";
-        login.style.display = "block";
+    const getLog = (await getLogStatus() !== 'false');
+    if (getLog) {
+        loginLink.href = "/_ah/logout?continue=%2F"
+        loginLink.innerHTML = "Logout here!";
+        logContainer.style.display = "block";
         inputForm.style.display = "block";
     } else {
-        loginURL.href = "/user-login.html";
-        loginURL.html = "login";
-        login.style.display = "block";
+        loginLink.href = "/_ah/login?continue=%2F"
+        loginLink.innerHTML = "Please Login!";
+        logContainer.style.display = "block";
     }
 }
-
-/** Fetches login link for user to login. */
-function login() {
-    fetch('/user-login', {
-        method: 'POST'
-    })
-        .then(response => {
-            return response.text();
-        })
-        .then(loginUrl => {
-            const loginAnchor = document.getElementById("login");
-            loginAnchor.href = loginUrl;
-        })
-}
-
 
 /**
  * Fetches log-in status from the servlet
@@ -155,7 +138,7 @@ TxtType.prototype.tick = function() {
 
 /**
  * Rotates different texts for the typewrite
- */
+*/
 
 window.onload = function() {
     const elements = document.getElementsByClassName('typewrite');

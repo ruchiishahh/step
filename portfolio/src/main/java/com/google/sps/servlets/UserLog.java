@@ -17,14 +17,8 @@ public class UserLog extends HttpServlet {
     UserService userService = UserServiceFactory.getUserService();
     response.setContentType("text/html");
     if (userService.isUserLoggedIn()) {
-      String userEmail = userService.getCurrentUser().getEmail();
-      String urlToRedirectToAfterUserLogsOut = "/index.html";
-      String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
       response.getWriter().print("true");
-
     } else {
-      String urlToRedirectToAfterUserLogsIn = "/user-login.html";
-      String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
       response.getWriter().print("false");
     }
   }
