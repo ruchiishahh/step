@@ -52,23 +52,43 @@ var logStatus;
  * Checks log-in Status & hides comments by default. 
  */
 async function loadWebPage() {
-    logStatus = (await getLogStatus() == 'true');
+    const inputForm = document.getElementById("input-container");
+    const login = document.getElementById("user-login");
+    const loginURL = document.getElementById("user-login-url");
+    logStatus = (await getLogStatus() !== 'false');
     getDataComment();
     if (logStatus) {
-        const inputForm = document.getElementById("input-container");
+        loginURL.href = "/user-login.html"
+        loginURL.innerHTML = "logout";
+        login.style.display = "block";
         inputForm.style.display = "block";
     } else {
-        const loginPrompt = document.getElementById("login-container");
-        loginPrompt.innerText = "To add a comment you must login.";
-
+        loginURL.href = "/user-login.html";
+        loginURL.html = "login";
+        login.style.display = "block";
     }
 }
+
+/** Fetches login link for user to login. */
+function login() {
+    fetch('/user-login', {
+        method: 'POST'
+    })
+        .then(response => {
+            return response.text();
+        })
+        .then(loginUrl => {
+            const loginAnchor = document.getElementById("login");
+            loginAnchor.href = loginUrl;
+        })
+}
+
 
 /**
  * Fetches log-in status from the servlet
  */
 async function getLogStatus() {
-    const response = await fetch('/user-login');
+    const response = await fetch('/user-log');
     let isLoggedIn = await response.text();
     return isLoggedIn;
 }
