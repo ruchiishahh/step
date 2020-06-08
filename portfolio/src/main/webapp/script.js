@@ -88,8 +88,8 @@ function login() {
  * Fetches log-in status from the servlet
  */
 async function getLogStatus() {
-    const response = await fetch('/user-log');
-    let isLoggedIn = await response.text();
+    const response = await fetch('/user-login');
+    const isLoggedIn = await response.text();
     return isLoggedIn;
 }
 
@@ -171,4 +171,3 @@ window.onload = function() {
     css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #000}";
     document.body.appendChild(css);
 };
-
