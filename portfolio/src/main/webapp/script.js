@@ -31,7 +31,7 @@ function getDataComment() {
         const numOfCommentsToDisplay = document.getElementById("numComments").value;
         dataComments.splice(0, numOfCommentsToDisplay).forEach(dataComment => { 
             let miniP = document.createElement("p");
-            miniP.innerText = "Basketball Player: " + dataComment.message;
+            miniP.innerText = "Basketball Player: " + dataComment.message + " Author: " + dataComment.creator;
             commentContainer.appendChild(miniP);
         })
     });

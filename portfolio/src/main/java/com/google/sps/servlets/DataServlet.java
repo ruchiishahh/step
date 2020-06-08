@@ -21,6 +21,10 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
 
+import com.google.appengine.api.users.User;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
+
 import com.google.gson.Gson;
 import com.google.sps.data.DataComment;
 
@@ -38,6 +42,7 @@ import java.util.stream.Collectors;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
     private int numOfComments = 10;
+    private final UserService userService = UserServiceFactory.getUserService();
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -68,7 +73,7 @@ public class DataServlet extends HttpServlet {
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String message = request.getParameter("text-input");
-        String creator = "Unknown";
+        String creator = userService.getCurrentUser().getEmail();
         String dateCreated = "June 2nd";
         Entity messageEntity = new Entity("DataComment");
         messageEntity.setProperty("message", message);
