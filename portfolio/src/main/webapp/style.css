@@ -166,6 +166,13 @@ h1{
     border: solid  red;
 }
 
+#map {
+    border: thin solid black;
+    height: 500px;
+    text-align: center;
+    width: 650px;
+}
+
 #numComments{
     box-sizing: border-box;
 	-webkit-box-sizing: border-box;
