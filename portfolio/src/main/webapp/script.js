@@ -31,10 +31,70 @@ function getDataComment() {
         const numOfCommentsToDisplay = document.getElementById("numComments").value;
         dataComments.splice(0, numOfCommentsToDisplay).forEach(dataComment => { 
             let miniP = document.createElement("p");
-            miniP.innerText = "Basketball Player: " + dataComment.message;
+            miniP.innerText = dataComment.message + " | Author: " + dataComment.creator;
             commentContainer.appendChild(miniP);
         })
     });
+}
+
+/**
+ * Animates the markers onto the map
+ */
+function toggleBounce() {
+    if (marker.getAnimation() !== null) {
+        marker.setAnimation(null);
+    } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+}
+
+/**
+ * Creates the map and sets the markers.
+ */
+function createMap() {
+    const map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: {lat: 37.3230, lng: -122.0322},
+    });
+    setMarkers(map);
+}
+
+const places = [
+    ['High School', 37.3194, -122.0091, 4],
+    ['Fav Restaurant', 37.3238, -121.9809, 5],
+    ['Fav Boba Shop', 37.3121, -122.0318, 3],
+    ['Fav Beach', 36.9741, -122.0308, 2],
+    ['Fav Salon', 37.3711, 121.9256, 1]
+];
+
+/**
+ * Sets markers on the map based on assigned coordinates.
+ */
+function setMarkers(map) {
+    const image = {
+        url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+        size: new google.maps.Size(20, 32),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(0, 32)
+    };
+    
+    const shape = {
+        coords: [1, 1, 1, 20, 18, 20, 18, 1],
+        type: 'poly'
+    };
+    
+    for (let i = 0; i < places.length; i++) {
+        let place = places[i];
+        let marker = new google.maps.Marker({
+            position: {lat: place[1], lng: place[2]},
+            map: map,
+            icon: image,
+            shape: shape,
+            title: place[0],
+            zIndex: place[3]
+        });
+        marker.addListener('click', toggleBounce);
+    }
 }
 
 /**
@@ -46,21 +106,24 @@ function deleteDataComments(){
     }).then(getDataComments());
 }
 
-var logStatus;
-
 /**
  * Checks log-in Status & hides comments by default. 
  */
 async function loadWebPage() {
-    logStatus = (await getLogStatus() == 'true');
+    const inputForm = document.getElementById("input-container");
+    const logContainer = document.getElementById("login-container");
+    const loginLink = document.getElementById("admin-user-link");
     getDataComment();
-    if (logStatus) {
-        const inputForm = document.getElementById("input-container");
+    const getLog = (await getLogStatus() !== 'false');
+    if (getLog) {
+        loginLink.href = "/_ah/logout?continue=%2F"
+        loginLink.innerHTML = "Logout here!";
+        logContainer.style.display = "block";
         inputForm.style.display = "block";
     } else {
-        const loginPrompt = document.getElementById("login-container");
-        loginPrompt.innerText = "To add a comment you must login.";
-
+        loginLink.href = "/_ah/login?continue=%2F"
+        loginLink.innerHTML = "Please Login!";
+        logContainer.style.display = "block";
     }
 }
 
@@ -68,7 +131,7 @@ async function loadWebPage() {
  * Fetches log-in status from the servlet
  */
 async function getLogStatus() {
-    const response = await fetch('/user-login');
+    const response = await fetch('/user-log');
     const isLoggedIn = await response.text();
     return isLoggedIn;
 }
@@ -135,7 +198,7 @@ TxtType.prototype.tick = function() {
 
 /**
  * Rotates different texts for the typewrite
- */
+*/
 
 window.onload = function() {
     const elements = document.getElementsByClassName('typewrite');

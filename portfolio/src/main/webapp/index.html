@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>Ruchi's Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1GxBlzZVawpOfO33JSGG_Lp7mN3ZUq3k"></script>
     <script src="script.js"></script>
   </head>
-  <body onload="loadWebPage()"> <!-- change here-->
+  <body onload="loadWebPage()">
     <div id="content">
       <h1>MY PORTFOLIO</h1>
-        <!-- <h1> Click <a href="/data"> here! </a> </h1> -->
       <div class="master-title">
         <span class="letter" data-letter="R">R</span>
         <span class="letter" data-letter="U">U</span>
@@ -34,17 +34,18 @@
         <div id="greeting-container"></div>
         <div onclick="addRandomGreeting()"><img src="images/funfact.png"></div>
       </div>
-      <div id="login-container"> </div>
+      
+      <div id="login-container"> <a id="admin-user-link"> </a> </div>
       <div id="input-container">
         <form action="/data" method="POST"> 
             <h2> Enter a basketball player here: </h2>
-            <input type="text" name="text-input" minlength="1" maxlength="50" title="50 characters minimum" required>
+            <input type="text" name="text-input" minlength="1" maxlength="50" title="50 characters minimum" id="user-input-text" required>
             <input onchange="getDataComment()" type="number" id="numComments" name="numComments" min="1" max="10" value=5>
-            <input type="submit" value="Submit!"/>
-            </br>
+            <input id="submit-dataComments" type="submit" value="Submit!"/>
+            <br/><br/>
         </form>
       
-        <button id="delete-dataComments" onclick="deleteDataComments()"> Delete previous submisssions </button>
+        <button id="delete-dataComments" onclick="deleteDataComments()">Delete previous submisssions </button>
             <div id="dataComment-container"></div>
       </div>
 
@@ -54,6 +55,13 @@
         is beneficial for some of the most marginalized communities in the world. </br> </br>
         This year, I'm honored to intern in the Student Training in Engineering Program and look forward to 
         learning about all of the development that the Geo Services Team makes in the upcoming weeks.</p>
+  
+  <h1>My Favorite Places on Google Maps</h1>
+  <div id="map" onclick=createMap();>
+      <h2> Click to see me! </h2>
+  </div>
+  <br/>
+
   <div class="typewriter">
     <h2> Courses Completed: </h2>
   </div>
