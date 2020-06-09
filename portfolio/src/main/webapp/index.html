@@ -39,10 +39,10 @@
       <div id="input-container">
         <form action="/data" method="POST"> 
             <h2> Enter a basketball player here: </h2>
-            <input type="text" name="text-input" minlength="1" maxlength="50" title="50 characters minimum" required>
+            <input type="text" name="text-input" minlength="1" maxlength="50" title="50 characters minimum" id="user-input-text" required>
             <input onchange="getDataComment()" type="number" id="numComments" name="numComments" min="1" max="10" value=5>
-            <input type="submit" value="Submit!"/>
-            </br>
+            <input id="submit-dataComments" type="submit" value="Submit!"/>
+            </br></br>
         </form>
       
         <button id="delete-dataComments" onclick="deleteDataComments()"> Delete previous submisssions </button>

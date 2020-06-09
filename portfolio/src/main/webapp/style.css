@@ -41,6 +41,27 @@ body{
     top:1px;
 }
 
+#delete-dataComments{
+    -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+	box-shadow: inset 0px 1px 0px 0px #45D6D6;
+	background-color: #2CBBBB;
+	border: 1px solid #27A0A0;
+	display: inline-block;
+	cursor: pointer;
+	color: #FFFFFF;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 14px;
+	padding: 8px 18px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+#delete-dataComments:hover {
+	background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
+	background-color:#34CACA;
+}
+
 div.greeting-container{
   margin: 0 auto;
   text-align: center;
@@ -73,6 +94,14 @@ h1{
 
 #input-container { 
     display: none;
+    max-width: 500px;
+	padding: 10px 20px;
+	background: #f4f7f8;
+	margin: 10px auto;
+	padding: 20px;
+	background: #f4f7f8;
+	border-radius: 8px;
+	font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 .letter{
@@ -137,6 +166,22 @@ h1{
     border: solid  red;
 }
 
+#numComments{
+    box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	outline: none;
+	display: block;
+	width: 100%;
+	padding: 7px;
+	border: none;
+	border-bottom: 1px solid rgb(0, 0, 0);
+	background: transparent;
+	margin-bottom: 10px;
+	font: 16px Montserrat, sans-serif;
+	height: 45px;
+}
+
 #owen {
   border-radius: 10px;
   border: 2px dotted orange;
@@ -148,10 +193,7 @@ p.desc{
     border-style: double;
     border-width: thin;
     text-align: center;
-}
-
-
-        
+}        
 
 p.portfolio_text{
     background-color: lightgrey;
@@ -194,6 +236,27 @@ p.social-media-text{
     top:1px;
 }
 
+#submit-dataComments{
+    -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+	box-shadow: inset 0px 1px 0px 0px #45D6D6;
+	background-color: #2CBBBB;
+	border: 1px solid #27A0A0;
+	display: inline-block;
+	cursor: pointer;
+	color: #FFFFFF;
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 14px;
+	padding: 8px 18px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+#submit-dataComments:hover {
+	background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
+	background-color:#34CACA;
+}
+
 .typewrite h2 {
     font: Andale Mono, monospace;
 }
@@ -218,4 +281,20 @@ p.social-media-text{
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: orange }
+}
+
+#user-input-text{
+    box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	outline: none;
+	display: block;
+	width: 100%;
+	padding: 7px;
+	border: none;
+	border-bottom: 1px solid rgb(0, 0, 0);
+	background: transparent;
+	margin-bottom: 10px;
+	font: 16px Montserrat, sans-serif;
+	height: 45px;
 }
