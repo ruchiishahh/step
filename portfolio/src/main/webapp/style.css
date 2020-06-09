@@ -170,7 +170,7 @@ h1{
     border: thin solid black;
     height: 500px;
     text-align: center;
-    width: 650px;
+    width: 100%;
 }
 
 #numComments{
