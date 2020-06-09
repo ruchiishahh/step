@@ -114,17 +114,17 @@ async function loadWebPage() {
     const logContainer = document.getElementById("login-container");
     const loginLink = document.getElementById("admin-user-link");
     getDataComment();
-    const getLog = (await getLogStatus() !== 'false');
-    if (getLog) {
-        loginLink.href = "/_ah/logout?continue=%2F"
+    const currLogStatus = await getLogStatus();
+    const checkLoggedIn = currLogStatus.checkifLoggedIn;
+    if (checkLoggedIn) {
         loginLink.innerHTML = "Logout here!";
         logContainer.style.display = "block";
         inputForm.style.display = "block";
     } else {
-        loginLink.href = "/_ah/login?continue=%2F"
-        loginLink.innerHTML = "Please Login!";
+        loginLink.innerHTML = "Please login!";
         logContainer.style.display = "block";
     }
+    loginLink.href = currLogStatus.linkforLoginLogout;
 }
 
 /**
@@ -132,8 +132,8 @@ async function loadWebPage() {
  */
 async function getLogStatus() {
     const response = await fetch('/user-log');
-    const isLoggedIn = await response.text();
-    return isLoggedIn;
+    const loggerStatus = await response.json();
+    return loggerStatus;
 }
 
 /**
