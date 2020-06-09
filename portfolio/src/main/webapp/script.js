@@ -41,59 +41,60 @@ function getDataComment() {
  * Animates the markers onto the map
  */
 function toggleBounce() {
-  if (marker.getAnimation() !== null) {
-    marker.setAnimation(null);
-  } else {
-    marker.setAnimation(google.maps.Animation.BOUNCE);
-  }
+    if (marker.getAnimation() !== null) {
+        marker.setAnimation(null);
+    } else {
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
 }
 
 /**
  * Creates the map and sets the markers.
  */
 function createMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 12,
-    center: {lat: 37.3230, lng: -122.0322},
-  });
-
-  setMarkers(map);
+    const map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 12,
+        center: {lat: 37.3230, lng: -122.0322},
+    });
+    setMarkers(map);
 }
 
-var places = [
-  ['High School', 37.3194, -122.0091, 4],
-  ['Fav Restaurant', 37.3238, -121.9809, 5],
-  ['Fav Boba Shop', 37.3121, -122.0318, 3],
-  ['Fav Beach', 36.9741, -122.0308, 2],
-  ['Fav Salon', 37.3711, 121.9256, 1]
+const places = [
+    ['High School', 37.3194, -122.0091, 4],
+    ['Fav Restaurant', 37.3238, -121.9809, 5],
+    ['Fav Boba Shop', 37.3121, -122.0318, 3],
+    ['Fav Beach', 36.9741, -122.0308, 2],
+    ['Fav Salon', 37.3711, 121.9256, 1]
 ];
 
 /**
  * Sets markers on the map based on assigned coordinates.
  */
 function setMarkers(map) {
-  var image = {
-    url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-    size: new google.maps.Size(20, 32),
-    origin: new google.maps.Point(0, 0),
-    anchor: new google.maps.Point(0, 32)
-  };
-  var shape = {
-    coords: [1, 1, 1, 20, 18, 20, 18, 1],
-    type: 'poly'
-  };
-  for (var i = 0; i < places.length; i++) {
-    var place = places[i];
-    var marker = new google.maps.Marker({
-      position: {lat: place[1], lng: place[2]},
-      map: map,
-      icon: image,
-      shape: shape,
-      title: place[0],
-      zIndex: place[3]
-    });
-    marker.addListener('click', toggleBounce);
-  }
+    const image = {
+        url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+        size: new google.maps.Size(20, 32),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(0, 32)
+    };
+    
+    const shape = {
+        coords: [1, 1, 1, 20, 18, 20, 18, 1],
+        type: 'poly'
+    };
+    
+    for (let i = 0; i < places.length; i++) {
+        let place = places[i];
+        let marker = new google.maps.Marker({
+            position: {lat: place[1], lng: place[2]},
+            map: map,
+            icon: image,
+            shape: shape,
+            title: place[0],
+            zIndex: place[3]
+        });
+        marker.addListener('click', toggleBounce);
+    }
 }
 
 /**

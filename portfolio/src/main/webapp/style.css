@@ -1,20 +1,19 @@
 .center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 }
 
 #content {
-  margin-left: auto;
-  margin-right: auto;
-  width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 650px;
 }
 
 #greeting-container {
-  margin-top: 20px;
+    margin-top: 20px;
 }
-
 
 body{
     align-items: center;
@@ -25,14 +24,12 @@ body{
     flex-direction: column;
     font-family: "Montserrat", sans-serif;
     justify-content: center;
-    margin: auto;
-    
+    margin: auto; 
 }
 
 .dataComment-button:hover {
     background-color:#121e35;
     background:linear-gradient(to bottom, #bb2f0c 5%, #2e466e 100%);
-  
 }
 
 .dataComment-button:active {
@@ -63,23 +60,22 @@ body{
 }
 
 div.greeting-container{
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
 }
 
 div.master-title{
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
 }
 
 div.social-media{
-  margin: 0 auto;
-  text-align: center;
-  width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
 }
-
 
 h1{
     border-color: red;
@@ -89,7 +85,7 @@ h1{
 }
 
 *, *:before, *:after{
-  box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 #input-container { 
@@ -105,61 +101,61 @@ h1{
 }
 
 .letter{
-  color: #00B4F1;
-  display: inline-block;
-  font-size: 2em;
-  font-weight: 500;
-  margin: 0.2em;
-  perspective: 400;
-  position: relative;
-  transform-style: flat | preserve-3d;
-  z-index: 1;
+    color: #00B4F1;
+    display: inline-block;
+    font-size: 2em;
+    font-weight: 500;
+    margin: 0.2em;
+    perspective: 400;
+    position: relative;
+    transform-style: flat | preserve-3d;
+    z-index: 1;
 }
 
 .letter:before, .letter:after{
-  content: attr(data-letter);
-  left:0;
-  position:absolute;
-  top:0;
-  transform-origin: top left;
+    content: attr(data-letter);
+    left:0;
+    position:absolute;
+    top:0;
+    transform-origin: top left;
 }
 .letter, .letter:before, .letter:after{
-  transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 .letter:before{
-  color: #fff;
-  transform:
-    rotateX(0deg)
-    rotateY(-15deg)
-    rotateZ(0deg);
-  z-index: 3;
+    color: #fff;
+    transform:
+        rotateX(0deg)
+        rotateY(-15deg)
+        rotateZ(0deg);
+    z-index: 3;
 }
 .letter:after{
-  color: rgba(4,2,0,.11);
-  transform:
-    scale(1.08,1)
-    rotateX(0deg)
-    rotateY(0deg)
-    rotateZ(0deg)
-    skew(0deg,1deg);
-  z-index:2;
+    color: rgba(4,2,0,.11);
+    transform:
+        scale(1.08,1)
+        rotateX(0deg)
+        rotateY(0deg)
+        rotateZ(0deg)
+        skew(0deg,1deg);
+    z-index:2;
 }
 
 .letter:hover:before{
-  color: #fafafa;
-  transform:
-    rotateX(0deg)
-    rotateY(-90deg)
-    rotateZ(0deg);
+    color: #fafafa;
+    transform:
+        rotateX(0deg)
+        rotateY(-90deg)
+        rotateZ(0deg);
 }
 
 .letter:hover:after{
-  transform:
-    scale(1.08,1)
-    rotateX(0deg)
-    rotateY(90deg)
-    rotateZ(0deg)
-    skew(0deg,22deg);
+    transform:
+        scale(1.08,1)
+        rotateX(0deg)
+        rotateY(90deg)
+        rotateZ(0deg)
+        skew(0deg,22deg);
 }
 
 #login-container {
@@ -190,9 +186,9 @@ h1{
 }
 
 #owen {
-  border-radius: 10px;
-  border: 2px dotted orange;
-  padding: 5px;
+    border-radius: 10px;
+    border: 2px dotted orange;
+    padding: 5px;
 }
 
 p.desc{
@@ -225,11 +221,11 @@ p.randomMsg_text{
 }
 
 p.social-media-text{
-  background-color: lightgrey;
-  border: dashed white;
-  border-radius: 5px;
-  font-family: Georgia, Helvetica, sans-serif;
-  text-align: center;
+    background-color: lightgrey;
+    border: dashed white;
+    border-radius: 5px;
+    font-family: Georgia, Helvetica, sans-serif;
+    text-align: center;
 }
 
 .social-media-button:hover {
@@ -245,9 +241,9 @@ p.social-media-text{
 
 #submit-dataComments{
     -moz-box-shadow: inset 0px 1px 0px 0px red;
-	-webkit-box-shadow: inset 0px 1px 0px 0px red;
-	box-shadow: inset 0px 1px 0px 0px red;
-	background-color: red ;
+    -webkit-box-shadow: inset 0px 1px 0px 0px red;
+    box-shadow: inset 0px 1px 0px 0px red;
+    background-color: red ;
 	border: 1px solid rgb(92, 4, 4);
 	display: inline-block;
 	cursor: pointer;
@@ -260,7 +256,7 @@ p.social-media-text{
 }
 
 #submit-dataComments:hover {
-	background:linear-gradient(to bottom, red 5%, red 100%);
+    background:linear-gradient(to bottom, red 5%, red 100%);
 	background-color:red;
 }
 
@@ -281,13 +277,13 @@ p.social-media-text{
 }
 
 @keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
+    from { width: 0 }
+    to { width: 100% }
 }
 
 @keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: orange }
+    from, to { border-color: transparent }
+    50% { border-color: orange }
 }
 
 #user-input-text{
