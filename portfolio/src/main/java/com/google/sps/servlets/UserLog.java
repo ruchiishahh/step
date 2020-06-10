@@ -19,14 +19,18 @@ public class UserLog extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     UserService userService = UserServiceFactory.getUserService();
     JsonObject jsonObject = new JsonObject();
+    
+    String loggedIn = "checkIfLoggedIn";
+    String url = "linkForLoginLogout";
+
     if (userService.isUserLoggedIn()) {
         String logoutURL = userService.createLogoutURL("/");
-        jsonObject.addProperty("checkifLoggedIn", true);
-        jsonObject.addProperty("linkforLoginLogout", logoutURL);
+        jsonObject.addProperty(loggedIn, true);
+        jsonObject.addProperty(url, logoutURL);
     } else {
         String loginURL = userService.createLoginURL("/");
-        jsonObject.addProperty("checkifLoggedIn", false);
-        jsonObject.addProperty("linkforLoginLogout", loginURL);
+        jsonObject.addProperty(loggedIn, false);
+        jsonObject.addProperty(url, loginURL);
     }
     response.setContentType("application/json");
     response.getWriter().println(jsonObject);

@@ -115,7 +115,7 @@ async function loadWebPage() {
     const loginLink = document.getElementById("admin-user-link");
     getDataComment();
     const currLogStatus = await getLogStatus();
-    const checkLoggedIn = currLogStatus.checkifLoggedIn;
+    const checkLoggedIn = currLogStatus.checkIfLoggedIn;
     if (checkLoggedIn) {
         loginLink.innerHTML = "Logout here!";
         logContainer.style.display = "block";
@@ -124,7 +124,7 @@ async function loadWebPage() {
         loginLink.innerHTML = "Please login!";
         logContainer.style.display = "block";
     }
-    loginLink.href = currLogStatus.linkforLoginLogout;
+    loginLink.href = currLogStatus.linkForLoginLogout;
 }
 
 /**
