@@ -7,9 +7,18 @@
     <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
   </head>
+    <div class="topnav">
+        <a class="active" href="#intro">Intro</a>
+        <a href="#add_comments">Comments</a>
+        <a href="#google-maps">Fav Places</a>
+        <a href="#ruchi-info">Info</a>
+        <a href="#owen-info">Owen</a>
+        <a href="#erin-info">Erin</a>
+        <a href="#social-media-info">Contact</a>
+    </div>
   <body onload="loadWebPage()">
     <div id="content">
-      <h1>MY PORTFOLIO</h1>
+      <h1 id="intro">MY PORTFOLIO</h1>
       <div class="master-title">
         <span class="letter" data-letter="R">R</span>
         <span class="letter" data-letter="U">U</span>
@@ -34,7 +43,15 @@
         <div id="greeting-container"></div>
         <div onclick="addRandomGreeting()"><img src="images/funfact.png"></div>
       </div>
-      
+
+      <p class="desc"> Thanks for visiting my site! I'm currently a rising Junior at UC Berkeley
+        and I'm majoring in Computer Science and minoring in Public Policy! Throughout my experiences 
+        in various hackathons, projects, and leadership experiences, I hope to create tangible change that
+        is beneficial for some of the most marginalized communities in the world. </br> </br>
+        This year, I'm honored to intern in the Student Training in Engineering Program and look forward to 
+        learning about all of the development that the Geo Services Team makes in the upcoming weeks.</p>
+
+      <h1 id="add_comments"> Login to Input Comments. </h1>
       <div id="login-container"> <a id="admin-user-link"> </a> </div>
       <div id="input-container">
         <form action="/data" method="POST"> 
@@ -48,20 +65,14 @@
         <button id="delete-dataComments" onclick="deleteDataComments()">Delete previous submisssions </button>
             <div id="dataComment-container"></div>
       </div>
-
-      <p class="desc"> Thanks for visiting my site! I'm currently a rising Junior at UC Berkeley
-        and I'm majoring in Computer Science and minoring in Public Policy! Throughout my experiences 
-        in various hackathons, projects, and leadership experiences, I hope to create tangible change that
-        is beneficial for some of the most marginalized communities in the world. </br> </br>
-        This year, I'm honored to intern in the Student Training in Engineering Program and look forward to 
-        learning about all of the development that the Geo Services Team makes in the upcoming weeks.</p>
   
-  <h1>My Favorite Places on Google Maps</h1>
+  <h1 id="google-maps">My Favorite Places on Google Maps</h1>
   <div id="map" onclick=createMap();>
       <h2> Click to see me! </h2>
   </div>
   <br/>
 
+    <h1 id="ruchi-info">  More information about Ruchi!</h1>
   <div class="typewriter">
     <h2> Courses Completed: </h2>
   </div>
@@ -122,7 +133,7 @@
     </ul>
 
         <div id="cohort" class="podmates-container">
-            <h2>STEP 2020 Geo Podmates!</h2>
+            <h1 id="owen-info"> STEP 2020 Geo Podmates: Owen Zhang</h1>
             <div id="owen" class="owen-container">
                 <h4> Owen Zhang</h4>
                 <p> Owen is a Business + Compsci Joint Degree student at Washington University in St. Louis. He values kindess and trust, and cares too much about the people around him!</p>
@@ -132,6 +143,7 @@
 
 
         <div id="erin-container">
+            <h1 id="erin-info"> STEP 2020 Geo Podmates: Erin Limbo</h1>
             <h4> Erin Limbo </h4>
             <div>
                 <p> Hey there! I am one of Ruchi's podmates for Google's 2020 STEP internship! I am an incoming sophomore studyin Computer Science at UC Berkeley. I love to play basketball, video games, and watch stocks! I am so excited to be working with Owen and Ruchi :D
@@ -142,12 +154,10 @@
         </div> 
 
 
-      <h1>View Ruchi's LinkedIn & Github:</h1>
+      <h1 id="social-media-info">View Ruchi's LinkedIn & Github:</h1>
       <div class="social-media">
       <a href="https://www.linkedin.com/in/ruchi-shahh/" class="social-media-button"><img src="images/linkedin.png"/></a> 
       <a href="https://github.com/ruchiishahh" class="social-media-button"><img src="images/github.png"/></a> </div>
-    
-   
     
   </body>
 </html>
