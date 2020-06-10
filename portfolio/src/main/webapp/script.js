@@ -37,64 +37,36 @@ function getDataComment() {
     });
 }
 
-/**
- * Animates the markers onto the map
- */
-function toggleBounce() {
-    if (marker.getAnimation() !== null) {
-        marker.setAnimation(null);
-    } else {
-        marker.setAnimation(google.maps.Animation.BOUNCE);
-    }
-}
-
-/**
- * Creates the map and sets the markers.
- */
-function createMap() {
-    const map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
-        center: {lat: 37.3230, lng: -122.0322},
-    });
-    setMarkers(map);
-}
-
 const places = [
-    ['High School', 37.3194, -122.0091, 4],
-    ['Fav Restaurant', 37.3238, -121.9809, 5],
-    ['Fav Boba Shop', 37.3121, -122.0318, 3],
-    ['Fav Beach', 36.9741, -122.0308, 2],
-    ['Fav Salon', 37.3711, 121.9256, 1]
+    ['Cupertino High School', 37.3194, -122.0091, 'This is where I went to high school.'],
+    ['El Amigo Burrito', 37.3238, -121.9809, 'This is my favorite Mexican restaurant.'],
+    ['Tpumps', 37.3121, -122.0318, 'This is my favorite Boba Shop.'],
+    ['Santa Cruz Beach', 36.9741, -122.0308, 'This is my favorite beach. We go here every summer.'],
+    ['Salon Professional', 37.3711, 121.9256, 'This is my favorite Salon to get a haircut.']
 ];
 
-/**
- * Sets markers on the map based on assigned coordinates.
- */
-function setMarkers(map) {
-    const image = {
-        url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
-        size: new google.maps.Size(20, 32),
-        origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(0, 32)
-    };
-    
-    const shape = {
-        coords: [1, 1, 1, 20, 18, 20, 18, 1],
-        type: 'poly'
-    };
-    
+/** Creates a map that shows landmarks around Google. */
+function createMap() {
+  const map = new google.maps.Map(
+      document.getElementById('map'),
+      {center: {lat: 37.3194, lng: -122.0091}, zoom: 15});
+
     for (let i = 0; i < places.length; i++) {
         let place = places[i];
-        let marker = new google.maps.Marker({
-            position: {lat: place[1], lng: place[2]},
-            map: map,
-            icon: image,
-            shape: shape,
-            title: place[0],
-            zIndex: place[3]
-        });
-        marker.addListener('click', toggleBounce);
+        addLandmark(map, place[1], place[2], place[0], place[3])
     }
+
+}
+
+/** Adds a marker that shows an info window when clicked. */
+function addLandmark(map, lat, lng, title, description) {
+  const marker = new google.maps.Marker(
+      {position: {lat: lat, lng: lng}, map: map, title: title});
+
+  const infoWindow = new google.maps.InfoWindow({content: description});
+  marker.addListener('click', () => {
+    infoWindow.open(map, marker);
+  });
 }
 
 /**
