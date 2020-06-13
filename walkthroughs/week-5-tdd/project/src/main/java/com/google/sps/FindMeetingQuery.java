@@ -33,7 +33,31 @@ public final class FindMeetingQuery {
     
     // List of TimeRanges that will not work for meeting attendees
     Collection<TimeRange> blockedTimes = new ArrayList();
+    // List of TimeRanges that will not work for meeting attendees + optional attendees
+    Collection<TimeRange> optionalBlockedTimes = new ArrayList();
+    
+    createListOfBlockedTimes(events, request, blockedTimes);
+    createListOfBlockedTimes(events, request, optionalBlockedTimes);
 
+    // List of TimeRanges that will work for meeting attendees
+    Collection<TimeRange> availableTimes = new ArrayList();
+    // List of TimeRanges that will work for meeting attendees + optional attendees
+    Collection<TimeRange> optionalAvailableTimes = new ArrayList();
+
+    createListOfAvailableTimes(events, request, blockedTimes, availableTimes);
+    createListOfAvailableTimes(events, request, optionalBlockedTimes, optionalAvailableTimes);
+
+    // Only return the List that works for optional attendees if there is one or more TimeRange
+    if (optionalAvailableTimes.size() > 0) {
+        return optionalAvailableTimes;
+    }
+    return availableTimes;
+  }
+
+  /**
+  * Create a List of TimeRanges that will not work for the given attendees based on events that are scheduled.
+  */
+  public void createListOfBlockedTimes(Collection<Event> events, MeetingRequest request, Collection<TimeRange> blockedTimes) {
     // Add the unavailable TimeRanges into the blockedTimes list
     for(String attendee: request.getAttendees()) {
         for(Event event: events){
@@ -42,11 +66,14 @@ public final class FindMeetingQuery {
             }
         }
     }
-    
+  }
+  
+  /**
+  * Create a List of TimeRanges that will work for the given attendees based on events that are scheduled.
+  */
+  public void createListOfAvailableTimes(Collection<Event> events, MeetingRequest request, Collection<TimeRange> blockedTimes, Collection<TimeRange> availableTimes) {
     // Track the next possible available time
     int nextAvailableTime = TimeRange.START_OF_DAY;
-    // Keep a list of all the available TimeRanges
-    Collection<TimeRange> availableTimes = new ArrayList();
 
     // Sort the blockedTimes by startTime
     Collections.sort((List)blockedTimes, TimeRange.ORDER_BY_START);
@@ -67,7 +94,5 @@ public final class FindMeetingQuery {
     if((TimeRange.END_OF_DAY - nextAvailableTime) >= request.getDuration()){
         availableTimes.add(TimeRange.fromStartEnd(nextAvailableTime, TimeRange.END_OF_DAY, true));  
     }
-    
-    return availableTimes;
   }
 }
