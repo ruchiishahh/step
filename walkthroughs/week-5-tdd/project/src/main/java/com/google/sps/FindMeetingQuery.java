@@ -25,7 +25,7 @@ public final class FindMeetingQuery {
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
 
     // Handle edge cases: when there are no attendees & the meeting duration is longer than a day
-    if(request.getAttendees().isEmpty()) {
+    if(request.getAttendees().isEmpty() && request.getOptionalAttendees().isEmpty()) {
         return Arrays.asList(TimeRange.WHOLE_DAY);
     } else if(request.getDuration() > TimeRange.END_OF_DAY) {
         return Arrays.asList();
@@ -36,8 +36,11 @@ public final class FindMeetingQuery {
     // List of TimeRanges that will not work for meeting attendees + optional attendees
     Collection<TimeRange> optionalBlockedTimes = new ArrayList();
     
-    createListOfBlockedTimes(events, request, blockedTimes);
-    createListOfBlockedTimes(events, request, optionalBlockedTimes);
+    createListOfBlockedTimes(events, request, blockedTimes, request.getAttendees());
+    List<String> allAttendees = new ArrayList();
+    allAttendees.addAll(request.getAttendees());
+    allAttendees.addAll(request.getOptionalAttendees());
+    createListOfBlockedTimes(events, request, optionalBlockedTimes, allAttendees);
 
     // List of TimeRanges that will work for meeting attendees
     Collection<TimeRange> availableTimes = new ArrayList();
@@ -57,9 +60,9 @@ public final class FindMeetingQuery {
   /**
   * Create a List of TimeRanges that will not work for the given attendees based on events that are scheduled.
   */
-  public void createListOfBlockedTimes(Collection<Event> events, MeetingRequest request, Collection<TimeRange> blockedTimes) {
+  public void createListOfBlockedTimes(Collection<Event> events, MeetingRequest request, Collection<TimeRange> blockedTimes, Collection<String> totalAttendees) {
     // Add the unavailable TimeRanges into the blockedTimes list
-    for(String attendee: request.getAttendees()) {
+    for(String attendee: totalAttendees) {
         for(Event event: events){
             if(event.getAttendees().contains(attendee)) {
                 blockedTimes.add(event.getWhen());
