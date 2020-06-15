@@ -34,28 +34,20 @@ public final class FindMeetingQuery {
     Collection<String> allAttendees = new ArrayList();
     allAttendees.addAll(request.getAttendees());
     allAttendees.addAll(request.getOptionalAttendees());
+    // List of TimeRanges that will not work for meeting attendees + optional attendees
+    Collection<TimeRange> optionalBlockedTimes = createListOfBlockedTimes(events, allAttendees);
+    // List of TimeRanges that will work for meeting attendees + optional attendees
+    Collection<TimeRange> optionalAvailableTimes = createListOfAvailableTimes(events, request, optionalBlockedTimes);
+
+    // Return the List that works for optional attendees if there is one or more TimeRange or no attendees
+    if (optionalAvailableTimes.size() > 0 || (optionalAvailableTimes.isEmpty() && request.getAttendees().isEmpty())) {
+        return optionalAvailableTimes;
+    }
 
     // List of TimeRanges that will not work for meeting attendees
     Collection<TimeRange> blockedTimes = createListOfBlockedTimes(events, request.getAttendees());
-    // List of TimeRanges that will not work for meeting attendees + optional attendees
-    Collection<TimeRange> optionalBlockedTimes = createListOfBlockedTimes(events, allAttendees);
-
-    
-    // List of TimeRanges that will work for meeting attendees + optional attendees
-    Collection<TimeRange> optionalAvailableTimes = createListOfAvailableTimes(events, request, optionalBlockedTimes);
     // List of TimeRanges that will work for meeting attendees
-    Collection<TimeRange> availableTimes = new ArrayList();
-    if (optionalAvailableTimes.size() == 0) {
-        availableTimes = createListOfAvailableTimes(events, request, blockedTimes);
-    }
-    
-
-    // Only return the List that works for optional attendees if there is one or more TimeRange or no attendees
-    if (optionalAvailableTimes.size() > 0) {
-        return optionalAvailableTimes;
-    } else if (optionalAvailableTimes.size() == 0 && (request.getAttendees()).size() == 0) {
-        return optionalAvailableTimes;
-    }
+    Collection<TimeRange> availableTimes = createListOfAvailableTimes(events, request, blockedTimes);
     return availableTimes;
   }
 
