@@ -40,10 +40,15 @@ public final class FindMeetingQuery {
     // List of TimeRanges that will not work for meeting attendees + optional attendees
     Collection<TimeRange> optionalBlockedTimes = createListOfBlockedTimes(events, allAttendees);
 
-    // List of TimeRanges that will work for meeting attendees
-    Collection<TimeRange> availableTimes = createListOfAvailableTimes(events, request, blockedTimes);
+    
     // List of TimeRanges that will work for meeting attendees + optional attendees
     Collection<TimeRange> optionalAvailableTimes = createListOfAvailableTimes(events, request, optionalBlockedTimes);
+    // List of TimeRanges that will work for meeting attendees
+    Collection<TimeRange> availableTimes = new ArrayList();
+    if (optionalAvailableTimes.size() == 0) {
+        availableTimes = createListOfAvailableTimes(events, request, blockedTimes);
+    }
+    
 
     // Only return the List that works for optional attendees if there is one or more TimeRange or no attendees
     if (optionalAvailableTimes.size() > 0) {
