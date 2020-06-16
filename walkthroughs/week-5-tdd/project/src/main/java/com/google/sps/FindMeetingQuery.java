@@ -40,7 +40,7 @@ public final class FindMeetingQuery {
     Collection<TimeRange> optionalAvailableTimes = createListOfAvailableTimes(events, request, optionalBlockedTimes);
 
     // Return the List that works for optional attendees if there is one or more TimeRange or no attendees
-    if (optionalAvailableTimes.size() > 0 || (optionalAvailableTimes.isEmpty() && request.getAttendees().isEmpty())) {
+    if (!optionalAvailableTimes.isEmpty() || (optionalAvailableTimes.isEmpty() && request.getAttendees().isEmpty())) {
         return optionalAvailableTimes;
     }
 
